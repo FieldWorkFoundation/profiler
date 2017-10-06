@@ -1,9 +1,10 @@
 require 'rails_helper'
+require 'shared_context'
 
 RSpec.describe Profile, type: :model do
-  subject do
-    Profile.new(name: 'NGO', country: 'Kenya')
-  end
+  include_context 'shared context'
+
+  subject { profile }
 
   it 'requires #name' do
     subject.name = nil
