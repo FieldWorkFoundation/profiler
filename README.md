@@ -1,5 +1,7 @@
 # FieldWorks Plaform
 
+[![Build Status](https://travis-ci.org/thisisfieldworks/platform.svg?branch=dev)](https://travis-ci.org/thisisfieldworks/platform)
+
 TODO: Project description
 
 ## Getting Started
