@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171006161419) do
+ActiveRecord::Schema.define(version: 20171006220625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "options", force: :cascade do |t|
+    t.bigint "question_id"
+    t.string "label", null: false
+    t.integer "score", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_options_on_question_id"
+  end
 
   create_table "profiles", force: :cascade do |t|
     t.string "name", null: false
@@ -38,4 +47,5 @@ ActiveRecord::Schema.define(version: 20171006161419) do
     t.index ["name"], name: "index_self_assessments_on_name", unique: true
   end
 
+  add_foreign_key "options", "questions"
 end

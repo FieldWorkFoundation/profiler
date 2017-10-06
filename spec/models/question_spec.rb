@@ -11,6 +11,12 @@ RSpec.describe Question, type: :model do
     expect(subject.assessment.name).to eq assessment.name
   end
 
+  it 'has many Options' do
+    options = [option, option.dup]
+    subject.options << options
+    expect(subject.options).to match_array options
+  end
+
   it 'requires assessment' do
     subject.assessment = nil
     is_expected.not_to be_valid
