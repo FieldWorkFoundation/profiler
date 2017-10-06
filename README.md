@@ -16,7 +16,7 @@ TODO: Project description
 
 ## Running tests
 
-`rails test`
+`bundle exec rspec`
 
 ## Deployment
 
