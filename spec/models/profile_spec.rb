@@ -6,6 +6,12 @@ RSpec.describe Profile, type: :model do
 
   subject { profile }
 
+  it 'has many Ratings' do
+    ratings = [rating, rating.dup]
+    subject.ratings << ratings
+    expect(subject.ratings).to match_array ratings
+  end
+
   it 'requires #name' do
     subject.name = nil
     is_expected.not_to be_valid

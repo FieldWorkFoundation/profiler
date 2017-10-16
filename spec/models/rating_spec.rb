@@ -14,6 +14,12 @@ RSpec.describe Rating, type: :model do
     expect(subject.profile.name).to eq profile.name
   end
 
+  it 'has many Answers' do
+    answers = [answer, answer.dup]
+    subject.answers << answers
+    expect(subject.answers).to match_array answers
+  end
+
   it 'requires Assessment' do
     subject.assessment = nil
     is_expected.not_to be_valid

@@ -3,6 +3,8 @@ RSpec.shared_context 'shared context', shared_context: :metadata do
   let(:profile)    { Profile.new(name: 'NGO', country: 'Kenya') }
   let(:question)   { Question.new(label: 'Have a budget?') }
   let(:option)     { Option.new(label: 'Yes') }
+  let(:rating)     { Rating.new }
+  let(:answer)     { Answer.new }
 end
 
 RSpec.configure do |rspec|
