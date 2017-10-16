@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171006220625) do
+ActiveRecord::Schema.define(version: 20171016085410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,17 @@ ActiveRecord::Schema.define(version: 20171006220625) do
     t.index ["assessment_id"], name: "index_questions_on_assessment_id"
   end
 
+  create_table "ratings", force: :cascade do |t|
+    t.bigint "profile_id"
+    t.bigint "assessment_id", null: false
+    t.string "assessment_type", null: false
+    t.integer "score", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["assessment_id"], name: "index_ratings_on_assessment_id"
+    t.index ["profile_id"], name: "index_ratings_on_profile_id"
+  end
+
   create_table "self_assessments", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -48,4 +59,5 @@ ActiveRecord::Schema.define(version: 20171006220625) do
   end
 
   add_foreign_key "options", "questions"
+  add_foreign_key "ratings", "profiles"
 end
