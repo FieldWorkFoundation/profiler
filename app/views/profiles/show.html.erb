@@ -1,1 +1,11 @@
 <h1><%= @profile.name %></h1>
+<h2>Assessments</h2>
+<ul>
+  <%- @profile.ratings.each do |r| %>
+    <li>
+      <%= r.assessment.name %>
+      <%= link_to 'View', profile_assessment_rating_path(@profile, r.assessment, r) %>
+      <%= link_to 'Edit', edit_profile_assessment_rating_path(@profile, r.assessment, r) %>
+    </li>
+  <% end %>
+</ul>

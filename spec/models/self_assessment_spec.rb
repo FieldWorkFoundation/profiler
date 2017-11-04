@@ -8,8 +8,14 @@ RSpec.describe SelfAssessment, type: :model do
 
   it 'has many Questions' do
     questions = [question, question.dup]
-    assessment.questions << questions
+    subject.questions << questions
     expect(subject.questions).to match_array questions
+  end
+
+  it 'has many Ratings' do
+    ratings = [rating, rating.dup]
+    subject.ratings << ratings
+    expect(subject.ratings).to match_array ratings
   end
 
   it 'requires name' do

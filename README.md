@@ -1,6 +1,6 @@
 # FieldWorks Plaform
 
-[![Build Status](https://travis-ci.org/thisisfieldworks/platform.svg?branch=dev)](https://travis-ci.org/thisisfieldworks/platform)
+[![Build Status](https://travis-ci.org/thisisfieldworks/platform.svg?branch=dev)](https://travis-ci.org/thisisfieldworks/platform) [![Code Climate](https://codeclimate.com/github/thisisfieldworks/platform/badges/gpa.svg)](https://codeclimate.com/github/thisisfieldworks/platform)
 
 TODO: Project description
 

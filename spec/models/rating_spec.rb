@@ -1,14 +1,17 @@
 require 'rails_helper'
 require 'shared_context'
 
-RSpec.describe Question, type: :model do
+RSpec.describe Rating, type: :model do
   include_context 'shared context'
-
-  subject { question }
 
   it 'belongs to Assessment' do
     subject.assessment = assessment
     expect(subject.assessment.name).to eq assessment.name
+  end
+
+  it 'belongs to Profile' do
+    subject.profile = profile
+    expect(subject.profile.name).to eq profile.name
   end
 
   it 'has many Answers' do
@@ -17,19 +20,18 @@ RSpec.describe Question, type: :model do
     expect(subject.answers).to match_array answers
   end
 
-  it 'has many Options' do
-    options = [option, option.dup]
-    subject.options << options
-    expect(subject.options).to match_array options
-  end
-
-  it 'requires assessment' do
+  it 'requires Assessment' do
     subject.assessment = nil
     is_expected.not_to be_valid
   end
 
-  it 'requires label' do
-    subject.label = nil
+  it 'requires Profile' do
+    subject.profile = nil
+    is_expected.not_to be_valid
+  end
+
+  it 'requires score' do
+    subject.score = nil
     is_expected.not_to be_valid
   end
 end

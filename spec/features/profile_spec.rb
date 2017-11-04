@@ -1,7 +1,10 @@
 require 'rails_helper'
+require 'shared_context'
 
 RSpec.feature 'Profile', type: :feature do
-  let(:profile) { Profile.create!(name: 'NGO', country: 'Kenya') }
+  include_context 'shared context'
+
+  before { profile.save! }
 
   scenario 'User can view Profile' do
     visit profile_path(profile)
