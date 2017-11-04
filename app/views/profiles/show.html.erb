@@ -1,11 +1,14 @@
-<h1><%= @profile.name %></h1>
+<h1>Profile for: <%= @profile.name %></h1>
 <h2>Assessments</h2>
 <ul>
-  <%- @profile.ratings.each do |r| %>
+  <%- @assessments.each do |assessment| %>
     <li>
-      <%= r.assessment.name %>
-      <%= link_to 'View', profile_assessment_rating_path(@profile, r.assessment, r) %>
-      <%= link_to 'Edit', edit_profile_assessment_rating_path(@profile, r.assessment, r) %>
+      <%= assessment.name %>
+      <%- if @checked_assessments.key?(assessment.id) %>
+        <%= link_to 'Edit', edit_profile_assessment_rating_path(@profile, assessment, @checked_assessments[assessment.id]) %>
+      <%- else %>
+        <%= link_to 'New', new_profile_assessment_rating_path(@profile, assessment) %>
+      <% end %>
     </li>
   <% end %>
 </ul>

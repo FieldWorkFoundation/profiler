@@ -4,10 +4,23 @@ require 'shared_context'
 RSpec.feature 'Profile', type: :feature do
   include_context 'shared context'
 
-  before { profile.save! }
+  before do
+    profile.save!
+    assessment.save!
+    visit profile_path(profile)
+  end
 
   scenario 'User can view Profile' do
-    visit profile_path(profile)
     expect(current_path).to eq profile_path(profile)
+  end
+
+  scenario 'incomplete Assessments show new link' do
+    expect(page).to have_text 'New'
+  end
+
+  scenario 'complete Assessments show edit link' do
+    rating.save!
+    visit profile_path(profile)
+    expect(page).to have_text 'Edit'
   end
 end

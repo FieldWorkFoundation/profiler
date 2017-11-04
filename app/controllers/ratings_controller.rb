@@ -1,5 +1,5 @@
 class RatingsController < ApplicationController
-  before_action :load_profile, :load_assessment, only: %i[new create]
+  before_action :load_profile, :load_assessment
 
   def new
     @rating = @assessment.ratings
@@ -13,6 +13,20 @@ class RatingsController < ApplicationController
     @rating = @assessment.ratings.new(params_whitelist)
     @answers = answer_fields(@rating)
     if @rating.save
+      redirect_to profile_path(@profile)
+    else
+      render :new
+    end
+  end
+
+  def edit
+    @rating = Rating.find_by(id: params[:id])
+    @answers = answer_fields(@rating)
+  end
+
+  def update
+    edit
+    if @rating.update(params_whitelist)
       redirect_to profile_path(@profile)
     else
       render :new
