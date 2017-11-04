@@ -1,0 +1,20 @@
+<%= simple_form_for(@rating, url: path) do |f| %>
+  <%= f.hidden_field :profile_id, value: @profile.id %>
+
+  <%= f.simple_fields_for :answers, @answers do |answer_fields| %>
+    <div>
+      <% question = answer_fields.object.question %>
+      <p><%= question.label %></p>
+      <%= answer_fields.hidden_field :question_id, value: question.id %>
+      <%= answer_fields.error :option %>
+      <%- question.options.order(:label).each do |opt| %>
+        <label>
+          <%= answer_fields.radio_button(:option_id, opt.id) %>
+          <%= opt.label %>
+        </label>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= f.submit 'Submit' %>
+<% end %>

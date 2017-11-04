@@ -1,26 +1,2 @@
-<h2>
-  <%= @assessment.name %>
-</h2>
-
-<%= simple_form_for(@rating, url: profile_assessment_ratings_path(@profile, @assessment, @rating)) do |f| %>
-  <%= f.hidden_field :profile_id, value: @profile.id %>
-
-  <ul>
-    <%= f.simple_fields_for :answers, @answers do |answer_fields| %>
-      <li>
-        <% question = answer_fields.object.question %>
-        <p><%= question.label %></p>
-        <%= answer_fields.hidden_field :question_id, value: question.id %>
-        <%= answer_fields.error :option %>
-        <%- question.options.each do |opt| %>
-          <label>
-            <%= answer_fields.radio_button(:option_id, opt.id) %>
-            <%= opt.label %>
-          <label>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
-
-  <%= f.submit 'Submit' %>
-<% end %>
+<h2><%= @assessment.name %></h2>
+<%= render partial: 'form', locals: { path: profile_assessment_ratings_path(@profile, @assessment, @rating) } %>
