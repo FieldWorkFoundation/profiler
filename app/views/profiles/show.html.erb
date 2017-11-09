@@ -4,6 +4,9 @@
   <%- @assessments.each do |assessment| %>
     <li>
       <%= assessment.name %>
+
+      <%= @checked_assessments[assessment.id]&.score %>
+
       <%- if @checked_assessments.key?(assessment.id) %>
         <%= link_to 'Edit', edit_profile_assessment_rating_path(@profile, assessment, @checked_assessments[assessment.id]) %>
       <%- else %>

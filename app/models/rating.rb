@@ -5,4 +5,9 @@ class Rating < ApplicationRecord
   accepts_nested_attributes_for :answers
 
   validates :profile, :assessment, :score, presence: true
+
+  def save(*args)
+    self[:score] = answers.map(&:score).reduce(&:+)
+    super
+  end
 end

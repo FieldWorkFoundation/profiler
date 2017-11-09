@@ -33,4 +33,14 @@ RSpec.describe Answer, type: :model do
     subject.rating = nil
     is_expected.not_to be_valid
   end
+
+  it '#score' do
+    option.score = 1
+    answer.option = option
+    expect(answer.score).to eq 1
+  end
+
+  it '#score defaults to zero' do
+    expect(answer.score).to eq 0
+  end
 end
